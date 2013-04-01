@@ -2,13 +2,13 @@ window.app =
   map: null
   markers: []
   ready: ->
-    $('#products').on('keypress', '#search', app.filter_products)
+    $('body').on('keyup', '#search', app.filter_products)
   filter_products: (e) ->
     query = $('#search').val()
     settings =
       dataType: 'script'
       type: 'get'
-      url: '/products/search?query=#{query}'
+      url: "/products/search?query=#{query}"
     $.ajax(settings)
   display_map: (lat, lng, zoom) ->
     mapOptions =
@@ -25,4 +25,4 @@ window.app =
     marker.setMap(null) for marker in app.markers
     app.markers = []
 
-$('#document').ready(app.ready)
+$(document).ready(app.ready)
